@@ -1,0 +1,7 @@
+{
+  "projectname": "AI%E5%B0%8F%E7%90%AA",
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "description": "Project configuration file, more information: https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+}
