@@ -8,12 +8,15 @@ const defaultVal = {
   URL: defaultUrl
 }
 
-export const useVideoUrl = (message: string, status: statusType) => {
+export const useVideoUrl = (
+  message: string,
+  status: statusType
+): { URL: string } => {
   return useMemo(() => {
     if (status === "start") return { answer: "", URL: whoami.URL }
     if (status === "idle") return defaultVal
     if (!message) return defaultVal
-    const match = questionArr.find(q => message.includes(q.type))
+    const match = questionArr.find(q => message.toLowerCase().includes(q.type))
     return match || noop
   }, [message, status])
 }

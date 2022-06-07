@@ -4,6 +4,13 @@ import { isFinclipAndroid } from "~/module/system"
 import { MixImage, MixView } from "./MixView"
 
 const presetQuestion = [
+  "今天天气如何",
+  "帮我查询疫情数据",
+  "帮我提前点个外卖",
+  "打开B站",
+  "可以呼叫外出救援么",
+  "我的车还在保修期限么",
+
   "开户失败怎么办？",
   "身份证照片怎么处理？",
   "证券账户未开出怎么办？",

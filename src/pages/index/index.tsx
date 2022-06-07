@@ -21,7 +21,7 @@ const Page: FC = () => {
   const [status, action] = useStatus()
 
   const [message, setMessage] = useState("")
-  const { URL: videoUrl, answer } = useVideoUrl(message, status)
+  const { URL: videoUrl, answer, appId } = useVideoUrl(message, status)
 
   const handleRecordMsg = useCallback(
     msg => {
@@ -57,6 +57,13 @@ const Page: FC = () => {
     [action]
   )
 
+  const handleVideoEnd = useCallback(async () => {
+    if (appId) {
+      await Taro.navigateToMiniProgram({ appId })
+    }
+    toIdle()
+  }, [toIdle, appId])
+
   useEffect(() => {
     Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
     checkRecordScope()
@@ -74,7 +81,7 @@ const Page: FC = () => {
       ].join(" ")}
     >
       <View className='video-and-text'>
-        <AIVideo src={videoUrl} onEnded={toIdle} onPlay={action.play} />
+        <AIVideo src={videoUrl} onEnded={handleVideoEnd} onPlay={action.play} />
         <Answer
           loading={status === "loading"}
           message={message}
