@@ -1,6 +1,7 @@
 import Taro from "@tarojs/taro"
+import stringSimilarity from "string-similarity"
 import { useMemo } from "react"
-import { defaultUrl, noop, questionArr, whoami } from "~/config/dict"
+import { defaultUrl, questionArr, questionItem, whoami } from "~/config/dict"
 import { statusType } from "./state"
 
 const defaultVal = {
@@ -11,13 +12,16 @@ const defaultVal = {
 export const useVideoUrl = (
   message: string,
   status: statusType
-): { URL: string } => {
+): questionItem => {
   return useMemo(() => {
-    if (status === "start") return { answer: "", URL: whoami.URL }
+    if (status === "start") return { answer: "", URL: whoami.URL } as any
     if (status === "idle") return defaultVal
     if (!message) return defaultVal
-    const match = questionArr.find(q => message.toLowerCase().includes(q.type))
-    return match || noop
+    const match = questionArr.find(item => message === item.question)
+    if (match) return match
+    const bestMatch = stringSimilarity.findBestMatch(message, questionArr.map(item => item.keyWords.join(" ")))
+    // console.log(bestMatch)
+    return questionArr[bestMatch.bestMatchIndex];
   }, [message, status])
 }
 

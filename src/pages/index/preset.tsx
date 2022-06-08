@@ -1,6 +1,7 @@
 import imgPreset from "~/assets/mingmang_tips_ico@2x.png"
+import { questionArr } from "~/config/dict"
 import { useAniDelay } from "~/module/animate"
-import { isFinclipAndroid } from "~/module/system"
+// import { isFinclipAndroid } from "~/module/system"
 import { MixImage, MixView } from "./MixView"
 
 const presetQuestion = [
@@ -23,7 +24,7 @@ const presetQuestion = [
   "国债逆回购交易时间？"
 ]
 
-const questions = isFinclipAndroid ? presetQuestion.slice(0, 5) : presetQuestion
+const questions = questionArr
 
 export const Preset: FC<{
   show: boolean
@@ -42,13 +43,13 @@ export const Preset: FC<{
         <MixView className='preset-title-text'>您可以尝试这样提问：</MixView>
       </MixView>
       <MixView className='preset-content'>
-        {questions.map(item => (
+        {questions.filter(item => item.featured).map(item => (
           <MixView
-            key={item}
+            key={item.question}
             className='preset-item'
-            onClick={() => aniShow && props.onSelect(item)}
+            onClick={() => aniShow && props.onSelect(item.question)}
           >
-            {item}
+            {item.question}
           </MixView>
         ))}
       </MixView>

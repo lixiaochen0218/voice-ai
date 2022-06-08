@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "mingmang",
   "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "appid": "wx50599cec67b97527",
+  "appid": "wx28d0ccba48af5c2b",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -30,7 +30,8 @@
       "outputPath": ""
     },
     "disableUseStrict": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "debug": true,
