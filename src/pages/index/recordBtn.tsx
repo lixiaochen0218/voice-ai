@@ -94,22 +94,43 @@ export const RecordBtn: FC<{
     }, 50)
   }, [onPress])
 
-  const handleClick = useCallback(() => {
-    setTimeout(() => setIsClick(true))
-    if (stateRef.current.hide) return
-    if (!playing || isRecording) return
+  // const handleClick = useCallback(() => {
+  //   console.log('handleClick')
+  //   setTimeout(() => setIsClick(true))
+  //   if (stateRef.current.hide) return
+  //   if (!playing || isRecording) return
+  //   onReset()
+  // }, [playing, isRecording, onReset])
+
+  const handleStopButtonClick = () => {
     onReset()
-  }, [playing, isRecording, onReset])
+  }
+  const handleStartButtonClick = () => {
+    setTimeout(() => {
+      onEnd()
+      onReset()
+    }, 200)
+  }
 
   return (
     <View className='record-btn-and-animate'>
       <RecordAnim playing={isRecording} />
 
+      {playing ?
+        <View
+        className="record-button"
+        onClick={handleStopButtonClick}
+      >
+        <Image
+          className='record-button-img'
+          src={imgBtnStop}
+        />
+      </View> :
       <View
         className={["record-button", "animate", hide ? "fade-up" : ""].join(
           " "
         )}
-        onClick={handleClick}
+        onClick={handleStartButtonClick}
         onTouchStart={handlePress}
         onTouchCancel={onEnd}
         onTouchEnd={onEnd}
@@ -118,7 +139,7 @@ export const RecordBtn: FC<{
           className='record-button-img'
           src={isRecording ? imgBtnPress : playing ? imgBtnStop : imgBtnDefault}
         />
-      </View>
+      </View>}
     </View>
   )
 }
