@@ -43,7 +43,7 @@ export const questionArr: questionItem[] = [
   {
     type: "市民服务热线(12345)",
     keyWords: ["功能","市民","服务","热线","一二三四五","12345"],
-    question: "市民服务热线(12345)有那些功能",
+    question: "市民服务热线(12345)有哪些功能",
     answer:
       "根据智能语音提示，按一可以咨询健康宝弹窗问题，按二咨询紧急就医救助问题，按三则是咨询反映其他事项。",
     URL: "chunni_red/chunni_12345_feature.mp4",
@@ -51,7 +51,7 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "市民服务热线(12345)",
-    keyWords: ["健康宝","弹窗"],
+    keyWords: ["健康宝","弹窗","问题"],
     question: "健康宝弹窗问题",
     answer:
       "拨打12345市民服务热线，按一进入健康宝弹窗问题后，将为您接通健康宝智能语音机器人，市民可根据语音提示回答简单信息，获取最新准确的弹窗政策解释服务.",
@@ -65,7 +65,7 @@ export const questionArr: questionItem[] = [
     answer:
       "拨打12345市民服务热线，按二进入紧急就医救助问题.这条专线仅限紧急就医救助使用.主要受理封管控区内，需要第一时间就医、用药、救助、物资保障等紧急问题.此处将设置人工专席接听，第一时间受理交办.",
     URL: "chunni_red/chunni_12345_press_two.mp4",
-    featured: false
+    featured: true
   },
   {
     type: "市民服务热线(12345)",
@@ -74,11 +74,11 @@ export const questionArr: questionItem[] = [
     answer:
       "拨打12345市民服务热线，按三,咨询反映其他问题.目前疫情期间12345话务量较大，如果您想咨询疫情防控相关政策，可以优先通过北京12345微信服务号进行智能咨询，通过民意直通填写并提交诉求.",
     URL: "chunni_red/chunni_12345_press_three.mp4",
-    featured: false
+    featured: true
   },
   {
     type: "健康宝弹窗",
-    keyWords: ["弹窗3","弹窗三"],
+    keyWords: ["健康宝","弹窗三"],
     question: "健康宝 弹窗3",
     answer:
       "弹窗三，对应与京内外的疫情风险地区、风险点位、风险人员等有时空关联，需要进行风险排查。若您在京，请立即向所居住的社区，村，酒店或单位报告，由相关部门进行风险排查，如无关联风险可解除弹窗，自行核酸检测不能自动解除本弹窗。",
@@ -87,7 +87,7 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "健康宝弹窗",
-    keyWords: ["弹窗4","弹窗四"],
+    keyWords: ["健康宝","弹窗四"],
     question: "健康宝 弹窗4",
     answer:
       "弹窗四，对应未按照防疫政策在规定时间内完成核酸检测人员。您有如下任一情况时，需要在规定时间内完成核酸检测。一，进返京72小时以内，二，近期有购买四类药品，三，出现发热等十一类症状到诊所等基层医疗机构就诊后，四，所从事职业有相关要求等其他防疫规定情况。",
@@ -96,30 +96,30 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "健康宝弹窗",
-    keyWords: ["弹窗1","弹窗一","弹窗一"],
+    keyWords: ["健康宝","弹窗一","弹窗一"],
     question: "健康宝 弹窗1",
     answer:
       "弹窗一，对应十四天内曾到访有一例(及以上)本土新冠病毒感染者所在县市、区、旗人员.根据北京市进（返）京防疫政策，请暂缓来京.待该地区连续十四天无新增本土感染者或转为低风险地区，或您离开上述地区已满十四天，可通过健康宝重新申请获取绿码进京.",
     URL: "chunni_red/chunni_popup_1.mp4",
-    featured: false
+    featured: true
   },
   {
     type: "健康宝弹窗",
-    keyWords: ["弹窗2","弹窗二"],
+    keyWords: ["健康宝","弹窗二"],
     question: "健康宝 弹窗2",
     answer:
       "弹窗二，对应目前正处于入境隔离期间人员.根据北京市入境防疫政策，请您按要求履行隔离防疫义务.本弹窗状态将在您入境隔离期满后次日将自动解除.",
     URL: "chunni_red/chunni_popup_2.mp4",
-    featured: false
+    featured: true
   },
   {
     type: "健康宝弹窗",
-    keyWords: ["弹窗5","弹窗五","弹窗舞"],
+    keyWords: ["健康宝","弹窗五","弹窗舞"],
     question: "健康宝 弹窗5",
     answer:
       "弹窗五，对应14日内有陆路边境口岸所在县旅居史人员。根据北京市防疫政策，非必须不进（返）京。如您离开上述地区满14天后，可通过健康宝重新申请获取“绿码”状态。",
     URL: "chunni_red/chunni_popup_5.mp4",
-    featured: false
+    featured: true
   },
   {
     type: "奥密克戎",
@@ -127,7 +127,7 @@ export const questionArr: questionItem[] = [
     question: "奥密克戎变异株",
     answer:
       "我国外防输入，内防反弹的防控策略对奥密克戎变异株仍然有效.中国疾控中心病毒所已针对奥密克戎变异株建立了特异性核酸检测方法，并持续针对可能的输入病例开展病毒基因组监测.上述措施将有利于及时发现可能输入我国的奥密克戎变异株.",
-    URL: "chunni_red/chunni_12345_omicorn.mp4",
+    URL: "chunni_red/chunni_omicron.mp4",
     featured: true
   }
 ]
