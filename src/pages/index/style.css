@@ -28,14 +28,14 @@ page {
   border: none;
 }
 
-.video-idle {
-  /* height: 144vw; */
-}
+/* .video-idle {
+  height: 144vw;
+} */
 
 .video-hidden {
   top: -120%;
   opacity: 0;
-  zindex: -1;
+  /* zindex: -1; */
 }
 
 .video-and-text {

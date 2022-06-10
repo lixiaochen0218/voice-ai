@@ -4,27 +4,6 @@ import { useAniDelay } from "~/module/animate"
 // import { isFinclipAndroid } from "~/module/system"
 import { MixImage, MixView } from "./MixView"
 
-const presetQuestion = [
-  "今天天气如何",
-  "帮我查询疫情数据",
-  "帮我提前点个外卖",
-  "打开B站",
-  "可以呼叫外出救援么",
-  "我的车还在保修期限么",
-
-  "开户失败怎么办？",
-  "身份证照片怎么处理？",
-  "证券账户未开出怎么办？",
-  "场内基金是什么？",
-  "场外基金是什么？",
-  "股票交易时间？",
-  "国债逆回购交易时间？",
-  "怎么继续完成回访流程？",
-  "债券佣金有最低收费吗？",
-  "国债逆回购交易时间？"
-]
-
-const questions = questionArr
 
 export const Preset: FC<{
   show: boolean
@@ -43,7 +22,7 @@ export const Preset: FC<{
         <MixView className='preset-title-text'>您可以尝试这样提问：</MixView>
       </MixView>
       <MixView className='preset-content'>
-        {questions.filter(item => item.featured).map(item => (
+        {questionArr.filter(item => item.featured).map(item => (
           <MixView
             key={item.question}
             className='preset-item'
