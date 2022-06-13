@@ -15,16 +15,16 @@ page {
 
 .video-wrapper {
   position: relative;
-  width: 120vw;
-  height: 144vw;
+  width: 100vw;
+  height: 155vw;
 }
 
 .video-box {
   position: absolute;
   top: 0;
-  width: 120vw;
-  height: 144vw;
-  left: -15vw;
+  width: 100vw;
+  height: 155vw;
+  left: 0vw;
   border: none;
 }
 
