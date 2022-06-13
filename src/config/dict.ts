@@ -33,7 +33,7 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "银行",
-    keyWords: ["介绍一下","建设银行"],
+    keyWords: ["介绍","建设银行"],
     question: "介绍一下建设银行",
     answer: "",
     URL: "shaosuki/shaosuki_bank_1.mp4",
@@ -49,7 +49,7 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "银行",
-    keyWords: ["什么是财富传承"],
+    keyWords: ["财富传承"],
     question: "什么是财富传承",
     answer: "",
     URL: "shaosuki/shaosuki_bank_3.mp4",
@@ -57,16 +57,16 @@ export const questionArr: questionItem[] = [
   },
   {
     type: "银行",
-    keyWords: ["介绍下金管家",],
-    question: "介绍下金管家",
+    keyWords: ["金管家","经管家"],
+    question: "什么是金管家",
     answer: "",
     URL: "shaosuki/shaosuki_bank_4.mp4",
     featured: true
   },
   {
     type: "银行",
-    keyWords: ["什么叫私人银行客户贷"],
-    question: "什么叫私人银行客户贷",
+    keyWords: ["私人银行客户贷"],
+    question: "什么是私人银行客户贷",
     answer: "",
     URL: "shaosuki/shaosuki_bank_5.mp4",
     featured: true
