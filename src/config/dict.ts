@@ -13,6 +13,7 @@ export type questionItem = {
   URL: string
   answer: string
   featured: boolean
+  appId?: string
 }
 
 export const questionArr: questionItem[] = [
@@ -56,7 +57,8 @@ export const questionArr: questionItem[] = [
     answer:
       "拨打12345市民服务热线，按一进入健康宝弹窗问题后，将为您接通健康宝智能语音机器人，市民可根据语音提示回答简单信息，获取最新准确的弹窗政策解释服务.",
     URL: "chunni_red/chunni_12345_press_one.mp4",
-    featured: true
+    featured: true,
+    appId: "wxfe0e405895cafdf9"
   },
   {
     type: "市民服务热线(12345)",

@@ -58,6 +58,7 @@ const Page: FC = () => {
   )
 
   const handleVideoEnd = useCallback(async () => {
+    console.log("appID: " + appId)
     if (appId) {
       await Taro.navigateToMiniProgram({ appId })
     }
