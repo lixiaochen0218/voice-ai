@@ -57,7 +57,7 @@ export const withCache = (url: string) => {
     downloadAndSaveCache(url, cacheKey)
   }
 
-  console.log("use cache", cachePath || url)
+  // console.log("use cache", cachePath || url)
 
   return cachePath || url
 }
