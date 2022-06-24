@@ -26,7 +26,8 @@
     "@tarojs/taro": "3.4.7",
     "dayjs": "^1.11.1",
     "react": "^17.0.2",
-    "string-similarity": "^4.0.4"
+    "string-similarity": "^4.0.4",
+    "taro-ui": "^2.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

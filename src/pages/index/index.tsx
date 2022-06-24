@@ -58,11 +58,23 @@ const Page: FC = () => {
   )
 
   const handleVideoEnd = useCallback(async () => {
-    // console.log("appID: " + appId)
-    if (appId) {
-      await Taro.navigateToMiniProgram({ appId })
-    }
     toIdle()
+    if (appId) {
+      console.log("appID: " + appId)
+      await Taro.navigateToMiniProgram({ appId, fail(res){
+        if(res.errMsg.includes('gesture')){
+          wx.showModal({
+            content: '请允许打开小程序',
+            success: function (res) {
+              if (res.confirm) { //这里是点击了确定以后
+                Taro.navigateToMiniProgram({ appId })
+              }
+            }
+          })
+        }
+        }
+      })
+    }
   }, [toIdle, appId])
 
   useEffect(() => {

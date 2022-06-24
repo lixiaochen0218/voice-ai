@@ -34,6 +34,33 @@ export const questionArr: questionItem[] = [
     featured: false
   },
   {
+    type: "小程序",
+    keyWords: ["天气"],
+    question: "今天天气怎么样",
+    answer:"好的，正在为您打开墨迹天气",
+    URL: "chunni_red/chunni_open_weather.mp4",
+    featured: true,
+    appId: "wxc30ae3bc7fb4cab1"
+  },
+  {
+    type: "小程序",
+    keyWords: ["打开北京健康宝"],
+    question: "打开北京健康宝",
+    answer:"好的，正在为您打开北京健康宝",
+    URL: "chunni_red/chunni_open_jiankangbao.mp4",
+    featured: true,
+    appId: "wxfe0e405895cafdf9"
+  },
+  {
+    type: "小程序",
+    keyWords: ["京东购物"],
+    question: "打开京东购物",
+    answer:"好的，正在为您打开京东购物",
+    URL: "chunni_red/chunni_open_jingdong.mp4",
+    featured: true,
+    appId: "wx91d27dbf599dff74"
+  },
+  {
     type: "市民服务热线(12345)",
     keyWords: ["介绍","市民","服务","热线","一二三四五","12345"],
     question: "介绍市民服务热线(12345)",
@@ -76,15 +103,6 @@ export const questionArr: questionItem[] = [
       "拨打12345市民服务热线，按三,咨询反映其他问题.目前疫情期间12345话务量较大，如果您想咨询疫情防控相关政策，可以优先通过北京12345微信服务号进行智能咨询，通过民意直通填写并提交诉求.",
     URL: "chunni_red/chunni_12345_press_three.mp4",
     featured: true
-  },
-  {
-    type: "健康宝弹窗",
-    keyWords: ["打开北京健康宝"],
-    question: "打开北京健康宝",
-    answer:"好的，正在为您打开北京健康宝",
-    URL: "chunni_red/chunni_open_jiankangbao.mp4",
-    featured: true,
-    appId: "wxfe0e405895cafdf9"
   },
   {
     type: "健康宝弹窗",
