@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "mingmang",
   "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "appid": "wx0eba57bb25219bb2",
+  "appid": "wxf56500ddf5bf6ec3",
   "setting": {
     "urlCheck": true,
     "es6": false,
