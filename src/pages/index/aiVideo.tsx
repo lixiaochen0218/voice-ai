@@ -15,7 +15,7 @@ import { withCache } from "~/module/fileCache"
 
 const getFullUrl = (url: string) => {
   const videoUrl = /^http/.test(url) ? url : [videoBaseUrl, url].join("/")
-  return withCache(videoUrl)
+  return videoUrl
 }
 
 const PosterVideo: FC = () => {
