@@ -1,5 +1,5 @@
 import imgLoading from "~/assets/mingmang_loading_ico@2x.png"
-import { MixImage, MixView } from "./MixView"
+import { Image, View } from "@tarojs/components"
 
 export const Answer: FC<{
   loading: boolean
@@ -10,15 +10,15 @@ export const Answer: FC<{
   if (!props.show) return null
   if (props.loading)
     return (
-      <MixView className='text-box loading'>
-        <MixImage className='img-loading' src={imgLoading} />
-      </MixView>
+      <View className='text-box loading'>
+        <Image className='img-loading' src={imgLoading} />
+      </View>
     )
   if (!props.answer && !props.message) return null
   return (
-    <MixView className='text-box'>
-      <MixView>{props.message}</MixView>
+    <View className='text-box'>
+      <View>{props.message}</View>
       {/* <View className="mt-4"> {props.answer} </View> */}
-    </MixView>
+    </View>
   )
 }

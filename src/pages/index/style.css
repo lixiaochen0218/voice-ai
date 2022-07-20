@@ -1,10 +1,14 @@
-page {
+/* page {
   background-image: linear-gradient(to right, #55abe1, #4488db);
+} */
+
+taro-video-control {
+  visibility: hidden !important;
 }
 
 .page {
   background: no-repeat bottom center/contain;
-  background-image: url(../../assets/mingmang_base_bg_img@2x.png);
+  background-image: url(/static/images/mingmang_base_bg_img@2x.png),linear-gradient(to right, #55abe1, #4488db);
   min-height: 100%;
   overflow: hidden;
 }

@@ -10,7 +10,9 @@
   },
   "scripts": {
     "build": "NODE_ENV=production taro build --type weapp",
-    "dev": "npm run build -- --watch"
+    "dev": "npm run build -- --watch",
+    "build:h5": "taro build --type h5",
+    "dev:h5": "npm run build:h5 -- --watch"
   },
   "browserslist": [
     "last 3 versions",
@@ -26,6 +28,8 @@
     "@tarojs/taro": "3.4.7",
     "dayjs": "^1.11.1",
     "react": "^17.0.2",
+    "react-dom": "^17.0.0",
+    "recorder-core": "^1.2.22062800",
     "string-similarity": "^4.0.4",
     "taro-ui": "^2.3.4"
   },

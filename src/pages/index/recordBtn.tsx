@@ -8,7 +8,6 @@ import imgBtnStop from "~/assets/mingmang_btn_stop_default.png"
 import imgRecordAnim_1 from "~/assets/mingmang_record_01@2x.png"
 import imgRecordAnim_2 from "~/assets/mingmang_record_02@2x.png"
 import imgRecordAnim_3 from "~/assets/mingmang_record_03@2x.png"
-import { MixImage, MixView } from "./MixView"
 
 const animImgs = [
   imgRecordAnim_1,
@@ -41,14 +40,14 @@ const RecordAnim: FC<{ playing: boolean }> = props => {
   if (!show) return null
 
   return (
-    <MixView
+    <View
       className={["relative z-index-10", aniShow ? "" : "fade-up"].join(" ")}
     >
-      <MixView className='record-animate'>
+      <View className='record-animate'>
         {animImgs.map((imgSrc, index) => {
           return (
-            <MixImage
-              key={imgSrc}
+            <Image
+              key={Math.random()}
               src={imgSrc}
               mode='aspectFit'
               className={[
@@ -59,9 +58,9 @@ const RecordAnim: FC<{ playing: boolean }> = props => {
             />
           )
         })}
-      </MixView>
-      <MixView className='record-animate-after' />
-    </MixView>
+      </View>
+      <View className='record-animate-after' />
+    </View>
   )
 }
 
@@ -103,7 +102,6 @@ export const RecordBtn: FC<{
   return (
     <View className='record-btn-and-animate'>
       <RecordAnim playing={isRecording} />
-
       <View
         className={["record-button", "animate", hide ? "fade-up" : ""].join(
           " "
@@ -126,7 +124,7 @@ export const Mask: FC<{ show: boolean }> = props => {
   const { show, aniShow } = useAniDelay(props.show)
   if (!show) return null
   return (
-    <MixView
+    <View
       className={["page-mask", "animate", aniShow ? "" : "opacity-0"].join(" ")}
     />
   )

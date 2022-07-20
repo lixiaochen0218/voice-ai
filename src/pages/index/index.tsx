@@ -9,7 +9,6 @@ import {
 } from "~/module/record"
 import { useVideoUrl } from "~/module/video"
 import { useStatus } from "~/module/state"
-import { sysInfo } from "~/module/system"
 
 import { Preset } from "./preset"
 import { Answer } from "./answer"
@@ -38,8 +37,7 @@ const Page: FC = () => {
   useRecordManager({ loading: action.loading, setMessage: handleRecordMsg })
 
   const handleStart = useCallback(async () => {
-    const err = await startRecord()
-    if (err) return
+    await startRecord()
 
     action.record()
   }, [action])
@@ -61,24 +59,24 @@ const Page: FC = () => {
     toIdle()
     if (appId) {
       console.log("appID: " + appId)
-      await Taro.navigateToMiniProgram({ appId, fail(res){
-        if(res.errMsg.includes('gesture')){
-          wx.showModal({
-            content: '请允许打开小程序',
-            success: function (res) {
-              if (res.confirm) { //这里是点击了确定以后
-                Taro.navigateToMiniProgram({ appId })
-              }
-            }
-          })
-        }
-        }
-      })
+      // await Taro.navigateToMiniProgram({ appId, fail(res){
+      //   if(res.errMsg.includes('gesture')){
+      //     wx.showModal({
+      //       content: '请允许打开小程序',
+      //       success: function (res) {
+      //         if (res.confirm) { //这里是点击了确定以后
+      //           Taro.navigateToMiniProgram({ appId })
+      //         }
+      //       }
+      //     })
+      //   }
+      //   }
+      // })
     }
   }, [toIdle, appId])
 
   useEffect(() => {
-    Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
+    // Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
     checkRecordScope()
   }, [])
 
@@ -86,12 +84,7 @@ const Page: FC = () => {
 
   return (
     <View
-      className={[
-        "page",
-        sysInfo.isFinclip ? "is-finclip" : "",
-        sysInfo.isWechat ? "is-wechat" : "",
-        sysInfo.isAndroid ? "is-android" : ""
-      ].join(" ")}
+      className={["page","is-wechat"].join(" ")}
     >
       <View className='video-and-text'>
         <AIVideo src={videoUrl} onEnded={handleVideoEnd} onPlay={action.play} />

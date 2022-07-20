@@ -1,8 +1,7 @@
+import { Image, View } from "@tarojs/components"
 import imgPreset from "~/assets/mingmang_tips_ico@2x.png"
 import { questionArr } from "~/config/dict"
 import { useAniDelay } from "~/module/animate"
-// import { isFinclipAndroid } from "~/module/system"
-import { MixImage, MixView } from "./MixView"
 
 
 export const Preset: FC<{
@@ -14,24 +13,24 @@ export const Preset: FC<{
   if (!show) return null
 
   return (
-    <MixView
+    <View
       className={["preset", "animate", aniShow ? "" : "fade-up"].join(" ")}
     >
-      <MixView className='preset-title'>
-        <MixImage src={imgPreset} className='preset-icon' />
-        <MixView className='preset-title-text'>您可以尝试这样提问：</MixView>
-      </MixView>
-      <MixView className='preset-content'>
+      <View className='preset-title'>
+        <Image src={imgPreset} className='preset-icon' />
+        <View className='preset-title-text'>您可以尝试这样提问：</View>
+      </View>
+      <View className='preset-content'>
         {questionArr.filter(item => item.featured).map(item => (
-          <MixView
+          <View
             key={item.question}
             className='preset-item'
             onClick={() => aniShow && props.onSelect(item.question)}
           >
             {item.question}
-          </MixView>
+          </View>
         ))}
-      </MixView>
-    </MixView>
+      </View>
+    </View>
   )
 }
