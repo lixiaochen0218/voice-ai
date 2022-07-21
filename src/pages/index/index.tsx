@@ -1,15 +1,12 @@
 import { useCallback, useState, useEffect } from "react"
 import Taro, { useDidHide } from "@tarojs/taro"
 import { View } from "@tarojs/components"
-import {
-  checkRecordScope,
-  startRecord,
-  stopRecord,
-  useRecordManager
-} from "~/module/record"
 import { useVideoUrl } from "~/module/video"
 import { useStatus } from "~/module/state"
-
+import Recorder from 'recorder-core'
+import 'recorder-core/src/engine/pcm'
+// import 'recorder-core/src/engine/mp3'
+// import 'recorder-core/src/engine/mp3-engine'
 import { Preset } from "./preset"
 import { Answer } from "./answer"
 import { AIVideo } from "./aiVideo"
@@ -21,6 +18,7 @@ const Page: FC = () => {
 
   const [message, setMessage] = useState("")
   const { URL: videoUrl, answer, appId } = useVideoUrl(message, status)
+  const [recorder, setRecorder] = useState(Recorder({type:"pcm",sampleRate:16000,bitRate:16}))
 
   const handleRecordMsg = useCallback(
     msg => {
@@ -34,12 +32,42 @@ const Page: FC = () => {
     [action]
   )
 
-  useRecordManager({ loading: action.loading, setMessage: handleRecordMsg })
+  // useRecordManager({ loading: action.loading, setMessage: handleRecordMsg })
 
   const handleStart = useCallback(async () => {
-    await startRecord()
+    // await startRecord()
+    console.log("start recording")
+    recorder.start()
 
     action.record()
+  }, [action])
+
+  const handleStop = useCallback(async () => {
+    // await startRecord()
+    console.log("stop recording")
+    action.loading()
+    recorder.stop((blob,duration) => {
+      console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
+      Taro.uploadFile({
+        url: "https://finogeeks-tools.finogeeks.club/mop-nls/upload",
+        filePath: (window.URL||webkitURL).createObjectURL(blob),
+        name: "file",
+        formData: { token: "finclip@nls", file:blob  },
+        success(nlsRes) {
+          console.log("nlsRes", nlsRes.data)
+          const json = JSON.parse(nlsRes.data)
+          setMessage(json.result)
+        },
+        fail(e) {
+          console.log(e)
+          setMessage("")
+        }
+      })
+  },function(s){
+      console.log("handleStop -> 录音失败");
+  });
+
+    // setMessage("12321321321")
   }, [action])
 
   const toIdle = useCallback(() => {
@@ -77,7 +105,8 @@ const Page: FC = () => {
 
   useEffect(() => {
     // Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
-    checkRecordScope()
+    // checkRecordScope()
+    recorder.open()
   }, [])
 
   useDidHide(toIdle)
@@ -101,9 +130,9 @@ const Page: FC = () => {
         show={["start", "idle", "recording"].includes(status)}
       />
       <RecordBtn
-        onPress={handleStart}
-        onEnd={stopRecord}
-        onReset={toIdle}
+        handleStart={handleStart}
+        handleStop={handleStop}
+        toIdle={toIdle}
         playing={status === "playing"}
         hide={status === "start" || status === "loading"}
         isRecording={status === "recording"}

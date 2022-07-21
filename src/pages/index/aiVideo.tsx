@@ -11,7 +11,7 @@ import { defaultUrl, videoBaseUrl, whoami } from "~/config/dict"
 import Taro from "@tarojs/taro"
 
 import imgPoster from "~/assets/poster_chunni.png"
-import { withCache } from "~/module/fileCache"
+// import { withCache } from "~/module/fileCache"
 
 const getFullUrl = (url: string) => {
   const videoUrl = /^http/.test(url) ? url : [videoBaseUrl, url].join("/")

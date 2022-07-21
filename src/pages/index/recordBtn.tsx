@@ -65,56 +65,66 @@ const RecordAnim: FC<{ playing: boolean }> = props => {
 }
 
 export const RecordBtn: FC<{
-  onPress: () => void
-  onEnd: () => void
-  onReset: () => void
+  handleStart: () => void
+  handleStop: () => void
+  toIdle: () => void
   isRecording: boolean
   playing: boolean
   hide: boolean
 }> = props => {
-  const { playing, onPress, onEnd, onReset, hide, isRecording } = props
-  const [isClick, setIsClick] = useState(false)
+  const { playing, handleStart, handleStop, toIdle, hide, isRecording } = props
+  // const [isClick, setIsClick] = useState(false)
 
-  const stateRef = useRef({
-    isClick,
-    playing,
-    hide
-  })
+  // const stateRef = useRef({
+  //   isClick,
+  //   playing,
+  //   hide
+  // })
 
-  stateRef.current = { isClick, playing, hide }
-  const handlePress = useCallback(() => {
-    setIsClick(false)
-    if (stateRef.current.hide) return
-    if (stateRef.current.playing) return
-    setTimeout(() => {
-      if (stateRef.current.isClick) return
-      onPress()
-    }, 50)
-  }, [onPress])
+  // stateRef.current = { isClick, playing, hide }
+  // const handlePress = useCallback(() => {
+  //   setIsClick(false)
+  //   if (stateRef.current.hide) return
+  //   if (stateRef.current.playing) return
+  //   setTimeout(() => {
+  //     if (stateRef.current.isClick) return
+  //     onPress()
+  //   }, 50)
+  // }, [onPress])
 
-  const handleClick = useCallback(() => {
-    setTimeout(() => setIsClick(true))
-    if (stateRef.current.hide) return
-    if (!playing || isRecording) return
-    onReset()
-  }, [playing, isRecording, onReset])
+  // const handleClick = useCallback(() => {
+  //   setTimeout(() => setIsClick(true))
+  //   if (stateRef.current.hide) return
+  //   if (!playing || isRecording) return
+  //   onReset()
+  // }, [playing, isRecording, onReset])
+
+  const handleClick = () => {
+    if (isRecording) {
+      handleStop()
+    } else {
+      handleStart()
+    }
+  }
 
   return (
     <View className='record-btn-and-animate'>
       <RecordAnim playing={isRecording} />
-      <View
-        className={["record-button", "animate", hide ? "fade-up" : ""].join(
-          " "
-        )}
-        onClick={handleClick}
-        onTouchStart={handlePress}
-        onTouchCancel={onEnd}
-        onTouchEnd={onEnd}
-      >
-        <Image
-          className='record-button-img'
-          src={isRecording ? imgBtnPress : playing ? imgBtnStop : imgBtnDefault}
-        />
+      <View className={["record-button", "animate", hide ? "fade-up" : ""].join(" ")}>
+        {playing ? 
+        <Image 
+          className='record-button-img' 
+          src={imgBtnStop} 
+          onClick={toIdle}/> 
+        : 
+        <Image 
+          className='record-button-img' 
+          src={isRecording ? imgBtnPress : imgBtnDefault}
+          // onTouchStart={handleStart}
+          // onTouchCancel={handleStop}
+          // onTouchEnd={handleStop}
+          onClick={handleClick}
+        />}
       </View>
     </View>
   )
