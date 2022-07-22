@@ -21,6 +21,7 @@ taro-video-control {
   position: relative;
   width: 120vw;
   height: 144vw;
+  left: -10vw;
 }
 
 .video-box {
@@ -28,7 +29,7 @@ taro-video-control {
   top: 0;
   width: 120vw;
   height: 144vw;
-  left: -15vw;
+  /* left: -10vw; */
   border: none;
 }
 

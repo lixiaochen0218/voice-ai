@@ -32,37 +32,74 @@ const Page: FC = () => {
     [action]
   )
 
-  // useRecordManager({ loading: action.loading, setMessage: handleRecordMsg })
-
   const handleStart = useCallback(async () => {
-    // await startRecord()
     console.log("start recording")
     recorder.start()
-
     action.record()
   }, [action])
 
   const handleStop = useCallback(async () => {
-    // await startRecord()
     console.log("stop recording")
     action.loading()
     recorder.stop((blob,duration) => {
       console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-      Taro.uploadFile({
-        url: "https://finogeeks-tools.finogeeks.club/mop-nls/upload",
-        filePath: (window.URL||webkitURL).createObjectURL(blob),
-        name: "file",
-        formData: { token: "finclip@nls", file:blob  },
-        success(nlsRes) {
-          console.log("nlsRes", nlsRes.data)
-          const json = JSON.parse(nlsRes.data)
-          setMessage(json.result)
-        },
-        fail(e) {
-          console.log(e)
-          setMessage("")
-        }
-      })
+
+      // var reader = new FileReader();
+      // reader.readAsDataURL(blob); 
+      // reader.onloadend = function() {
+      //   var base64data = reader.result.split("base64,")[1];                
+      //   console.log(base64data);
+        
+      //   const data = {
+      //     ProjectId: 0, //腾讯云项目 ID
+      //     SubServiceType: 2, //一句话识别
+      //     SourceType: 1, //语音数据
+      //     EngSerViceType: "16k_zh",
+      //     VoiceFormat: "pcm", //识别音频的音频格式。
+      //     Data: base64data,
+      //     UsrAudioKey: "chunni",
+      //     FilterDirty:1,//是否过滤脏词
+      //     FilterPunc:1,//是否过滤标点符号
+      //     FilterModal:1//是否过语气词
+      //   };
+      //   Taro.request({
+      //     url: 'asr.tencentcloudapi.com',
+      //     header: {
+      //       "X-TC-Version": "2019-06-14",
+      //       "X-TC-Region": "ap-shanghai",
+      //       "X-TC-Action": "SentenceRecognition",
+      //       "X-TC-Timestamp": 1599140479,
+      //       "Authorization": ''
+      //     },
+      //     method: 'POST',
+      //     data,
+      //     success(response) {
+      //       console.log("nlsRes", response)
+      //       // const json = JSON.parse(nlsRes.data)
+      //       // setMessage(json.result)
+      //     },
+      //     fail(e) {
+      //       console.log(e)
+      //       setMessage("")
+      //     }
+      //   })
+      // }
+
+      // Taro.uploadFile({
+      //   url: "https://finogeeks-tools.finogeeks.club/mop-nls/upload",
+      //   filePath,
+      //   name: "file",
+      //   formData: { token: "finclip@nls", file: form },
+      //   success(nlsRes) {
+      //     console.log("nlsRes", nlsRes.data)
+      //     const json = JSON.parse(nlsRes.data)
+      //     setMessage(json.result)
+      //   },
+      //   fail(e) {
+      //     console.log(e)
+      //     setMessage("")
+      //   }
+      // })
   },function(s){
       console.log("handleStop -> 录音失败");
   });
@@ -104,7 +141,6 @@ const Page: FC = () => {
   }, [toIdle, appId])
 
   useEffect(() => {
-    // Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
     // checkRecordScope()
     recorder.open()
   }, [])
