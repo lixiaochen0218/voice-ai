@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useState, useEffect, useRef } from "react"
 import Taro, { useDidHide } from "@tarojs/taro"
 import { View } from "@tarojs/components"
 import { useVideoUrl } from "~/module/video"
@@ -11,12 +11,14 @@ import { AIVideo } from "./aiVideo"
 import { Mask, RecordBtn } from "./recordBtn"
 import "./style.css"
 
-// const STT_END_POINT = 'https://service-cy0mbn4f-1310900042.bj.apigw.tencentcs.com/release/stt';
-const STT_END_POINT = 'http://localhost:9000/stt';
+const STT_END_POINT = 'https://service-cy0mbn4f-1310900042.bj.apigw.tencentcs.com/release/stt';
+// const STT_END_POINT = 'http://localhost:9000/stt';
 
 
 const Page: FC = () => {
   const [status, action] = useStatus()
+  const statusRef = useRef(status);
+  statusRef.current = status;
 
   const [message, setMessage] = useState("")
   const { URL: videoUrl, answer, appId } = useVideoUrl(message, status)
@@ -26,12 +28,22 @@ const Page: FC = () => {
     recorder.open()
   }, [])
 
+  const handleFirstClick = () => {
+    if (status === 'stable') {
+      action.start()
+    }
+  }
+
   const handleStart = useCallback(async () => {
     console.log("start recording")
     recorder.start()
     action.record()
-    // setTimeout(() => recorder.stop(),5000);
-  }, [action])
+    setTimeout(() => { //如果录音超过 5 秒没有停止，则自动停止录音
+      if (statusRef.current === 'recording') {
+        handleStop()
+      }
+    },4000);
+  }, [status])
 
   const handleStop = useCallback(async () => {
     console.log("stop recording")
@@ -113,9 +125,9 @@ const Page: FC = () => {
 
   return (
     <View
-      className={["page","is-wechat"].join(" ")}
+      className={["page","is-wechat"].join(" ")} onClick={handleFirstClick}
     >
-      <View className='video-and-text' onLongPress={toIdle}>
+      {status !== 'stable' &&<View className='video-and-text' onLongPress={toIdle}>
         <AIVideo src={videoUrl} onEnded={handleVideoEnd} onPlay={action.play}/>
         <Answer
           loading={status === "loading"}
@@ -123,7 +135,7 @@ const Page: FC = () => {
           answer={answer}
           show={status !== "idle"}
         />
-      </View>
+      </View>}
 
       <Preset
         onSelect={handleSelect}
@@ -134,7 +146,7 @@ const Page: FC = () => {
         handleStop={handleStop}
         toIdle={toIdle}
         playing={status === "playing"}
-        hide={status === "start" || status === "loading"}
+        hide={["start", "stable", "loading"].includes(status)}
         isRecording={status === "recording"}
       />
       <Mask show={status === "recording"} />

@@ -1,6 +1,6 @@
-/* page {
-  background-image: linear-gradient(to right, #55abe1, #4488db);
-} */
+page {
+  max-width: 400px;
+}
 
 taro-video-control {
   visibility: hidden !important;
