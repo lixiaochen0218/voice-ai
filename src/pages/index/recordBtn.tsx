@@ -1,5 +1,5 @@
 import { Image, View } from "@tarojs/components"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useAniDelay } from "~/module/animate"
 
 import imgBtnDefault from "~/assets/mingmang_btn_voice_default@x.png"
@@ -73,39 +73,14 @@ export const RecordBtn: FC<{
   hide: boolean
 }> = props => {
   const { playing, handleStart, handleStop, toIdle, hide, isRecording } = props
-  // const [isClick, setIsClick] = useState(false)
 
-  // const stateRef = useRef({
-  //   isClick,
-  //   playing,
-  //   hide
-  // })
-
-  // stateRef.current = { isClick, playing, hide }
-  // const handlePress = useCallback(() => {
-  //   setIsClick(false)
-  //   if (stateRef.current.hide) return
-  //   if (stateRef.current.playing) return
-  //   setTimeout(() => {
-  //     if (stateRef.current.isClick) return
-  //     onPress()
-  //   }, 50)
-  // }, [onPress])
-
-  // const handleClick = useCallback(() => {
-  //   setTimeout(() => setIsClick(true))
-  //   if (stateRef.current.hide) return
-  //   if (!playing || isRecording) return
-  //   onReset()
-  // }, [playing, isRecording, onReset])
-
-  const handleClick = () => {
-    if (isRecording) {
-      handleStop()
-    } else {
-      handleStart()
-    }
-  }
+  // const handleClick = () => {
+  //   if (isRecording) {
+  //     handleStop()
+  //   } else {
+  //     handleStart()
+  //   }
+  // }
 
   return (
     <View className='record-btn-and-animate'>
@@ -120,10 +95,10 @@ export const RecordBtn: FC<{
         <Image 
           className='record-button-img' 
           src={isRecording ? imgBtnPress : imgBtnDefault}
-          // onTouchStart={handleStart}
-          // onTouchCancel={handleStop}
-          // onTouchEnd={handleStop}
-          onClick={handleClick}
+          onTouchStart={handleStart}
+          onTouchCancel={handleStop}
+          onTouchEnd={handleStop}
+          // onClick={handleClick}
         />}
       </View>
     </View>

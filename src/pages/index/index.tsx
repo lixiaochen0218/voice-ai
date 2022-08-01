@@ -51,14 +51,19 @@ const Page: FC = () => {
     recorder.stop((blob,duration) => {
       console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
 
+      if (duration < 500) {
+        toIdle()
+        return
+      }
+
       // const file = new File([blob], 'test.pcm', { type: blob.type })
       // const filePath = (window.URL||webkitURL).createObjectURL(file)
       // console.log(file,filePath)
 
-      var reader = new FileReader();
+      const reader:any = new FileReader();
       reader.readAsDataURL(blob); 
       reader.onloadend = function() {
-        var base64data = reader.result.split("base64,")[1];                
+        const base64data = reader.result.split("base64,")[1];                
         // console.log(base64data);
 
         Taro.request({
@@ -78,12 +83,15 @@ const Page: FC = () => {
           fail:function(res){
               console.error("上传失败",res);
               setMessage("")
+              toIdle()
           }
         });
       }
 
     },function(s){
         console.log("handleStop -> 录音失败");
+        setMessage("")
+        toIdle()
     });
 
   }, [action])
