@@ -25,8 +25,17 @@ const Page: FC = () => {
   const [recorder, setRecorder] = useState(Recorder({type:"pcm",sampleRate:16000,bitRate:16}))
 
   useEffect(() => {
-    recorder.open()
+    checkPermission()
   }, [])
+
+  const checkPermission = () => {
+    recorder.open(() => {
+      console.log("录音权限已打开")
+    }, (msg,isUserNotAllow) => {
+      console.log("无录音权限")
+      // console.log((isUserNotAllow?"UserNotAllow，":"")+"无法录音:"+msg, 1);
+    })
+  }
 
   const handleFirstClick = () => {
     if (status === 'stable') {
@@ -36,6 +45,7 @@ const Page: FC = () => {
 
   const handleStart = useCallback(async () => {
     console.log("start recording")
+    checkPermission()
     recorder.start()
     action.record()
     setTimeout(() => { //如果录音超过 5 秒没有停止，则自动停止录音
