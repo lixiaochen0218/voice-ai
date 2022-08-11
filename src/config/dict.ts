@@ -32,6 +32,22 @@ export const questionArr: questionItem[] = [
     featured: false
   },
   {
+    type: "信用卡",
+    keyWords: ["办理晋商银行信用卡"],
+    question: "如何办理晋商银行信用卡",
+    answer: "",
+    URL: "3d/3d_credit_1.mp4",
+    featured: true
+  },
+  {
+    type: "信用卡",
+    keyWords: ["晋商银行","信用卡激活"],
+    question: "晋商银行信用卡激活",
+    answer: "",
+    URL: "3d/3d_credit_2.mp4",
+    featured: true
+  },
+  {
     type: "银行",
     keyWords: ["介绍","建设银行"],
     question: "介绍一下建设银行",
