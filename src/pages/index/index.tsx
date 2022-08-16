@@ -16,11 +16,13 @@ import { Answer } from "./answer"
 import { AIVideo } from "./aiVideo"
 import { Mask, RecordBtn } from "./recordBtn"
 import "./style.css"
+import { questionItem } from "~/config/dict"
 
 const Page: FC = () => {
   const [status, action] = useStatus()
 
   const [message, setMessage] = useState("")
+  const [preset, setPreset] = useState("GENERAL")
   const { URL: videoUrl, answer, appId } = useVideoUrl(message, status)
 
   const handleRecordMsg = useCallback(
@@ -49,13 +51,18 @@ const Page: FC = () => {
     action.done()
   }, [action])
 
-  const handleSelect = useCallback(
-    (message: string) => {
-      action.loading()
-      setMessage(message)
-    },
-    [action]
-  )
+  const handleSelect = (item: questionItem) => {
+    if (item.question && item.URL) {
+        action.loading()
+        setMessage(item.question)
+      }
+      if (item.changeType) {
+        setPreset(item.changeType)
+      }
+      if (item.appId) {
+        Taro.navigateToMiniProgram({ appId: item.appId })
+      }
+  }
 
   const handleVideoEnd = useCallback(async () => {
     toIdle()
@@ -105,6 +112,7 @@ const Page: FC = () => {
 
       <Preset
         onSelect={handleSelect}
+        type={preset}
         show={["start", "idle", "recording"].includes(status)}
       />
       <RecordBtn

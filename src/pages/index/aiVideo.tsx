@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { defaultUrl, videoBaseUrl, whoami } from "~/config/dict"
 import Taro from "@tarojs/taro"
 
-import imgPoster from "~/assets/poster_chunni.png"
+import imgPoster from "~/assets/poster_caoqing.png"
 import { withCache } from "~/module/fileCache"
 
 const getFullUrl = (url: string) => {

@@ -1,13 +1,20 @@
 import imgPreset from "~/assets/mingmang_tips_ico@2x.png"
-import { questionArr } from "~/config/dict"
+import { questionArr, questionItem } from "~/config/dict"
 import { useAniDelay } from "~/module/animate"
 // import { isFinclipAndroid } from "~/module/system"
 import { MixImage, MixView } from "./MixView"
 
+const TITLE_MAP = {
+  "GENERAL": "您可以尝试这样提问：",
+  "CHOOSE": "为您推荐3款理财产品",
+  "XJB": "薪金煲 周周享"
+}
+
 
 export const Preset: FC<{
   show: boolean
-  onSelect: (question: string) => void
+  type: string
+  onSelect: (item: questionItem) => void
 }> = props => {
   const { show, aniShow } = useAniDelay(props.show)
 
@@ -19,14 +26,14 @@ export const Preset: FC<{
     >
       <MixView className='preset-title'>
         <MixImage src={imgPreset} className='preset-icon' />
-        <MixView className='preset-title-text'>您可以尝试这样提问：</MixView>
+        <MixView className='preset-title-text'>{TITLE_MAP[props.type]}</MixView>
       </MixView>
       <MixView className='preset-content'>
-        {questionArr.filter(item => item.featured).map(item => (
+        {questionArr.filter(item => item.type === props.type || (props.type!== "GENERAL" && item.type === "BACK")).map(item => (
           <MixView
             key={item.question}
             className='preset-item'
-            onClick={() => aniShow && props.onSelect(item.question)}
+            onClick={() => aniShow && props.onSelect(item)}
           >
             {item.question}
           </MixView>
