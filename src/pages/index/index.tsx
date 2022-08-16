@@ -23,7 +23,7 @@ const Page: FC = () => {
 
   const [message, setMessage] = useState("")
   const [preset, setPreset] = useState("GENERAL")
-  const { URL: videoUrl, answer, appId } = useVideoUrl(message, status)
+  const { URL: videoUrl, answer, appId, changeType } = useVideoUrl(message, status)
 
   const handleRecordMsg = useCallback(
     msg => {
@@ -46,10 +46,13 @@ const Page: FC = () => {
     action.record()
   }, [action])
 
-  const toIdle = useCallback(() => {
+  const toIdle = () => {
+    if (changeType) {
+      setPreset(changeType)
+    }
     setMessage("")
     action.done()
-  }, [action])
+  }
 
   const handleSelect = (item: questionItem) => {
     if (item.question && item.URL) {
@@ -64,25 +67,25 @@ const Page: FC = () => {
       }
   }
 
-  const handleVideoEnd = useCallback(async () => {
+  const handleVideoEnd = () => {
     toIdle()
-    if (appId) {
-      console.log("appID: " + appId)
-      await Taro.navigateToMiniProgram({ appId, fail(res){
-        if(res.errMsg.includes('gesture')){
-          wx.showModal({
-            content: '请允许打开小程序',
-            success: function (res) {
-              if (res.confirm) { //这里是点击了确定以后
-                Taro.navigateToMiniProgram({ appId })
-              }
-            }
-          })
-        }
-        }
-      })
-    }
-  }, [toIdle, appId])
+    // if (appId) {
+    //   console.log("appID: " + appId)
+    //   await Taro.navigateToMiniProgram({ appId, fail(res){
+    //     if(res.errMsg.includes('gesture')){
+    //       wx.showModal({
+    //         content: '请允许打开小程序',
+    //         success: function (res) {
+    //           if (res.confirm) { //这里是点击了确定以后
+    //             Taro.navigateToMiniProgram({ appId })
+    //           }
+    //         }
+    //       })
+    //     }
+    //     }
+    //   })
+    // }
+  }
 
   useEffect(() => {
     Taro.showShareMenu({ showShareItems: ["wechatFriends", "wechatMoment"] })
