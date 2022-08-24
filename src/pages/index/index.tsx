@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect, useRef } from "react"
 import Taro, { useDidHide } from "@tarojs/taro"
-import { View } from "@tarojs/components"
+import { View, Image } from "@tarojs/components"
 import { useVideoUrl } from "~/module/video"
 import { useStatus } from "~/module/state"
 import Recorder from 'recorder-core'
@@ -10,6 +10,7 @@ import { Answer } from "./answer"
 import { AIVideo } from "./aiVideo"
 import { Mask, RecordBtn } from "./recordBtn"
 import "./style.css"
+import playBtn from "~/assets/playBtn.png"
 
 const STT_END_POINT = 'https://service-cy0mbn4f-1310900042.bj.apigw.tencentcs.com/release/stt';
 // const STT_END_POINT = 'http://localhost:9000/stt';
@@ -38,7 +39,7 @@ const Page: FC = () => {
   }
 
   const handleFirstClick = () => {
-    if (status === 'stable') {
+    if (status === 'wait') {
       action.start()
     }
   }
@@ -143,31 +144,37 @@ const Page: FC = () => {
 
   return (
     <View
-      className={["page","is-wechat"].join(" ")} onClick={handleFirstClick}
+      className="page"
     >
-      {status !== 'stable' &&<View className='video-and-text' onLongPress={toIdle}>
-        <AIVideo src={videoUrl} onEnded={handleVideoEnd} onPlay={action.play}/>
+      <View className='video-and-text' onLongPress={toIdle}>
+        <AIVideo status={status} src={videoUrl} onEnded={handleVideoEnd} onPlay={action.play}/>
         <Answer
           loading={status === "loading"}
           message={message}
           answer={answer}
           show={status !== "idle"}
         />
-      </View>}
+      </View>
 
       <Preset
         onSelect={handleSelect}
-        show={["start", "idle", "recording"].includes(status)}
+        show={["wait", "start", "idle", "recording"].includes(status)}
+        status={status}
       />
       <RecordBtn
         handleStart={handleStart}
         handleStop={handleStop}
         toIdle={toIdle}
         playing={status === "playing"}
-        hide={["start", "stable", "loading"].includes(status)}
+        hide={["start", "wait", "loading"].includes(status)}
         isRecording={status === "recording"}
       />
       <Mask show={status === "recording"} />
+      {status === 'wait' &&<Image
+        onClick={handleFirstClick}
+        src={playBtn}
+        className='play-btn'
+      />}
     </View>
   )
 }

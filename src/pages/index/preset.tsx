@@ -6,15 +6,17 @@ import { useAniDelay } from "~/module/animate"
 
 export const Preset: FC<{
   show: boolean
+  status: string
   onSelect: (question: string) => void
 }> = props => {
   const { show, aniShow } = useAniDelay(props.show)
+  const { status } = props
 
   if (!show) return null
 
   return (
     <View
-      className={["preset", "animate", aniShow ? "" : "fade-up"].join(" ")}
+      className={["preset", "animate", aniShow ? "" : "fade-up", status === 'wait' ? 'blur': ''].join(" ")}
     >
       <View className='preset-title'>
         <Image src={imgPreset} className='preset-icon' />
@@ -25,7 +27,7 @@ export const Preset: FC<{
           <View
             key={item.question}
             className='preset-item'
-            onClick={() => aniShow && props.onSelect(item.question)}
+            onClick={() => aniShow && status !== 'wait' && props.onSelect(item.question)}
           >
             {item.question}
           </View>

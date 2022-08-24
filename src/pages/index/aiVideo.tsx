@@ -48,6 +48,7 @@ const PosterVideo: FC = () => {
 }
 
 export const AIVideo: FC<{
+  status: string
   src: string
   onPlay: () => void
   onEnded: () => void
@@ -95,7 +96,7 @@ export const AIVideo: FC<{
   )
 
   return (
-    <View className='video-wrapper'>
+    <View className={props.status ==='wait' ? 'video-wrapper blur' : 'video-wrapper'}>
       <Image
         src={imgPoster}
         mode='aspectFill'
