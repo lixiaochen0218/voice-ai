@@ -12,7 +12,8 @@ import { Mask, RecordBtn } from "./recordBtn"
 import "./style.css"
 import playBtn from "~/assets/playBtn.png"
 
-const STT_END_POINT = 'https://service-cy0mbn4f-1310900042.bj.apigw.tencentcs.com/release/stt';
+const STT_END_POINT = 'https://service-brnvtrur-1304341259.bj.apigw.tencentcs.com/release/stt' // Beijing Time APP
+// const STT_END_POINT = 'https://service-cy0mbn4f-1310900042.bj.apigw.tencentcs.com/release/stt'; // Alex Li
 // const STT_END_POINT = 'http://localhost:9000/stt';
 
 

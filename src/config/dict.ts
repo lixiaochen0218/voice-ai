@@ -1,7 +1,10 @@
 export const videoBaseUrl =
-  "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+  // "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+  "https://community-file.btime.com"
 
-const mingmangBaseUrl = "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+const mingmangBaseUrl = 
+// "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+"https://community-file.btime.com"
 
 export const defaultUrl = `${mingmangBaseUrl}/chunni_red_demo/chunni_red_demo_idle.mp4`
 
