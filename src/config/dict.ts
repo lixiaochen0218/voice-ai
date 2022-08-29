@@ -83,7 +83,6 @@ export const questionArr: questionItem[] = [
     question: "利率是多少",
     answer:"当前7日年化率是百分之二点一，实际利率以签约及持仓页面展示利率为准。",
     URL: "caoqing/caoqing_xinjinbao_3.mp4",
-    
   },
   {
     type: "XJB",
@@ -91,14 +90,13 @@ export const questionArr: questionItem[] = [
     question: "如何购买呢？",
     answer:"点击下方薪金煲[bao3]周周享[xiang3]的详情页内的立即购买就可以购买了哦[o5].",
     URL: "caoqing/caoqing_xinjinbao_4.mp4",
-    
   },
   {
     type: "XJB",
     keyWords: ["立即购买"],
     question: "立即购买",
-    answer:"",
-    URL: "",
+    answer:"正在为您打开中信银行小程序",
+    URL: "caoqing/caoqing_xinjinbao_6.mp4",
     appId: 'wx886b6a5d3603ae7d'
   },
   {
