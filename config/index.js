@@ -43,7 +43,7 @@ const config = {
     },
   },
   h5: {
-    publicPath: "/",
+    publicPath: "/xiaonih5/",    // https://show.btime.com/xiaonih5
     staticDirectory: "static",
     postcss: {
       autoprefixer: {
