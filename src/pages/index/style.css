@@ -18,6 +18,7 @@ taro-video-control {
 }
 
 .play-btn {
+  display: inherit;
   top: -110vw;
 }
 
