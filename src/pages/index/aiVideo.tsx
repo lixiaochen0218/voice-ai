@@ -10,13 +10,10 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { defaultUrl, videoBaseUrl, whoami } from "~/config/dict"
 import Taro from "@tarojs/taro"
 
-import imgPoster from "~/assets/poster_shaosuki.png"
-import { withCache } from "~/module/fileCache"
+import imgPoster from "~/assets/poster_shaosuki2.png"
+// import { withCache } from "~/module/fileCache"
 
-const getFullUrl = (url: string) => {
-  const videoUrl = /^http/.test(url) ? url : [videoBaseUrl, url].join("/")
-  return withCache(videoUrl)
-}
+const getFullUrl = (url: string) => /^http/.test(url) ? url : [videoBaseUrl, url].join("/")
 
 const PosterVideo: FC = () => {
   const [loaded, setLoaded] = useState(false)
@@ -63,7 +60,7 @@ export const AIVideo: FC<{
     ctx.seek(0)
     ctx.play()
     onPlay()
-    timer.current = setTimeout(() => setHide(false), 500)
+    timer.current = setTimeout(() => setHide(false), 300)
   }, [onPlay])
 
   useEffect(() => {
@@ -88,7 +85,7 @@ export const AIVideo: FC<{
       const { currentTime, duration } = ev.detail
       if (!currentTime || !duration) return
       if (duration - currentTime <= 1) {
-        setTimeout(() => handleEnded(), 700)
+        setTimeout(() => handleEnded(), 500) // 视频播放完停留时间
       }
     },
     [handleEnded]

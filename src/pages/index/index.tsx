@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react"
 import Taro, { useDidHide } from "@tarojs/taro"
-import { View } from "@tarojs/components"
+import { View, Image } from "@tarojs/components"
 import {
   checkRecordScope,
   startRecord,
