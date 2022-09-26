@@ -3,7 +3,9 @@ export const videoBaseUrl =
 
 const mingmangBaseUrl = "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
 
-export const defaultUrl = `${mingmangBaseUrl}/shaosuki/shaosuki2_idle.mp4`
+const folder = 'shaosuki2'
+
+export const defaultUrl = `${mingmangBaseUrl}/${folder}/shaosuki2_idle.mp4`
 
 export type questionItem = {
   type: string
@@ -20,7 +22,7 @@ export const questionArr: questionItem[] = [
     keyWords: [],
     question: "",
     answer: "您好，我才刚出生一个月，很多技能还在学习中，换个问题试试吧。",
-    URL: `${mingmangBaseUrl}/shaosuki/shaosuki2_noop.mp4`,
+    URL: `${mingmangBaseUrl}/${folder}/shaosuki2_noop.mp4`,
     featured: false
   },
   {
@@ -28,7 +30,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["您好","你好","是谁","名字","自我介绍"],
     question: "你是谁？你的名字是什么？",
     answer: "您好，我是人工智能数字人小琪。",
-    URL: "shaosuki/shaosuki2_opening.mp4",
+    URL: `${folder}/shaosuki2_opening.mp4`,
     featured: false
   },
   {
@@ -36,7 +38,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["何时设立","位于哪里"],
     question: "学校何时设立？位于哪里？",
     answer: "",
-    URL: "shaosuki/shaosuki2_school_1.mp4",
+    URL: `${folder}/shaosuki2_school_1.mp4`,
     featured: true
   },
   {
@@ -44,7 +46,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["相比其他国际","有哪些","优势"],
     question: "相比其他国际学校，融育有哪些课程优势？",
     answer: "",
-    URL: "shaosuki/shaosuki2_school_2.mp4",
+    URL: `${folder}/shaosuki2_school_2.mp4`,
     featured: true
   },
   {
@@ -52,7 +54,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["学生应该完成多少学分"],
     question: "学生应该完成多少学分？",
     answer: "",
-    URL: "shaosuki/shaosuki2_school_3.mp4",
+    URL: `${folder}/shaosuki2_school_3.mp4`,
     featured: true
   },
   {
@@ -60,7 +62,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["主要课程","位于哪里"],
     question: "有哪些主要课程？",
     answer: "",
-    URL: "shaosuki/shaosuki2_school_4.mp4",
+    URL: `${folder}/shaosuki2_school_4.mp4`,
     featured: true
   },
   {
@@ -68,7 +70,7 @@ export const questionArr: questionItem[] = [
     keyWords: ["有哪些社团活动"],
     question: "学校有哪些社团活动呢？",
     answer: "",
-    URL: "shaosuki/shaosuki2_school_5.mp4",
+    URL: `${folder}/shaosuki2_school_5.mp4`,
     featured: true
   },
   // {
