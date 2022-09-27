@@ -74,13 +74,13 @@ export const RecordBtn: FC<{
 }> = props => {
   const { playing, handleStart, handleStop, toIdle, hide, isRecording } = props
 
-  // const handleClick = () => {
-  //   if (isRecording) {
-  //     handleStop()
-  //   } else {
-  //     handleStart()
-  //   }
-  // }
+  const handleClick = () => {
+    if (isRecording) {
+      handleStop()
+    } else {
+      handleStart()
+    }
+  }
 
   return (
     <View className='record-btn-and-animate'>
@@ -98,7 +98,7 @@ export const RecordBtn: FC<{
           onTouchStart={handleStart}
           onTouchCancel={handleStop}
           onTouchEnd={handleStop}
-          // onClick={handleClick}
+          onClick={handleClick}
         />}
       </View>
     </View>

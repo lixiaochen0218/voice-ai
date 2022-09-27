@@ -1,10 +1,10 @@
 export const videoBaseUrl =
-  // "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
-  "https://community-file.btime.com"
+  "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+  // "https://community-file.btime.com"
 
 const mingmangBaseUrl = 
-// "https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
-"https://community-file.btime.com"
+"https://mingmang-1310900042.cos.ap-beijing.myqcloud.com"
+// "https://community-file.btime.com"
 
 export const defaultUrl = `${mingmangBaseUrl}/chunni_red_demo/chunni_red_demo_idle.mp4`
 
@@ -35,6 +35,15 @@ export const questionArr: questionItem[] = [
     answer: "您好，我是接诉即办推广大使时间小妮",
     URL: "chunni_red_demo/chunni_red_demo_opening.mp4",
     featured: false
+  },
+  {
+    type: "人工服务",
+    keyWords: ["人工"],
+    question: "",
+    answer: "正在为您接入人工服务",
+    URL: "chunni_red_demo/chunni_red_demo_person.mp4",
+    featured: false,
+    appId: "https://mingmang.meme.cool/#/user"
   },
   {
     type: "new demo",

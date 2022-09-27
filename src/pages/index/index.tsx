@@ -39,12 +39,6 @@ const Page: FC = () => {
     })
   }
 
-  const handleFirstClick = () => {
-    if (status === 'wait') {
-      action.start()
-    }
-  }
-
   const handleStart = useCallback(async () => {
     console.log("start recording")
     checkPermission()
@@ -138,6 +132,12 @@ const Page: FC = () => {
       //   }
       //   }
       // })
+      if (appId.startsWith('https://')) {
+        location.href = appId;
+        // Taro.redirectTo({
+        //   url: appId
+        // })
+      }
     }
   }, [toIdle, appId])
 
@@ -171,11 +171,6 @@ const Page: FC = () => {
         isRecording={status === "recording"}
       />
       <Mask show={status === "recording"} />
-      {status === 'wait' &&<Image
-        onClick={handleFirstClick}
-        src={playBtn}
-        className='play-btn'
-      />}
     </View>
   )
 }

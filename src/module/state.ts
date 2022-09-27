@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from "react"
 
 export type statusType = "wait" | "start" | "idle" | "recording" | "loading" | "playing"
 export const useStatus = () => {
-  const [status, setStatus] = useState<statusType>("wait")
+  const [status, setStatus] = useState<statusType>("start")
 
   const ref = useRef(status || "")
   ref.current = status || ""
