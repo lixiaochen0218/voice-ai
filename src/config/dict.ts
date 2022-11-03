@@ -34,6 +34,14 @@ export const questionArr: questionItem[] = [
     featured: false
   },
   {
+    type: "20",
+    keyWords: ["二十大什么时候开幕？"],
+    question: "二十大什么时候开幕？",
+    answer:"中国共产党第二十次全国代表大会将于十月十六日在北京召开.",
+    URL: "chunni_red/chunni_20.mp4",
+    featured: true
+  },
+  {
     type: "小程序",
     keyWords: ["天气"],
     question: "今天天气怎么样",
