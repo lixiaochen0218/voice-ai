@@ -125,7 +125,7 @@ taro-video-control {
   background: no-repeat center/contain;
 }
 .preset-content {
-  height: 440px;
+  height: 260px;
   overflow-y: auto;
 }
 .preset-item {
@@ -140,7 +140,7 @@ taro-video-control {
   position: absolute;
   z-index: 20;
   bottom: 80px;
-  left: 600px;
+  left: 530px;
   width: 100px;
   display: flex;
   flex-direction: column;
